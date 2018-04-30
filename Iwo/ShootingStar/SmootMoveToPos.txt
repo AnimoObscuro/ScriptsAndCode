@@ -1,0 +1,35 @@
+integer gON;
+ 
+default
+{
+    touch_start(integer total_number)
+    {
+        vector ownPosition = llGetPos();
+        rotation ownRotation = llGetRot();
+        vector detectedPosition = llDetectedPos(0);
+        rotation detectedRotation = llDetectedRot(0);
+        detectedPosition.x = 128;
+        detectedPosition.y = 128;
+        detectedPosition.z = 25;
+        
+        
+        gON = !gON;
+        if (gON)
+        {
+            // Make repeated rotations of PI/2 radians, each taking 0.5 seconds
+            //llSetKeyframedMotion([llEuler2Rot(<0.0,0.0,PI/2>), 0.5],[KFM_DATA,KFM_ROTATION, KFM_MODE,KFM_LOOP]);
+ 
+        //llSetKeyframedMotion([(detectedPosition - ownPosition) + <-1.0, 0.0, 0.2>*detectedRotation,ownRotation, 0.12],[]);            
+        //llSetKeyframedMotion([(detectedPosition - ownPosition) + <-1.0, 0.0, 0.2>*detectedRotation,ownRotation, 10.0],[]);            
+        //llSetKeyframedMotion([(detectedPosition - ownPosition),ownRotation, 10.0],[]);            
+        llSetKeyframedMotion([(detectedPosition - ownPosition),ownRotation, 10.0],[]);            
+            
+            
+            
+        }
+        else
+        {
+            llSetKeyframedMotion([],[]);
+        }
+    }
+}
